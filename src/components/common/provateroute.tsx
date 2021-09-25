@@ -1,23 +1,19 @@
 import React from 'react'
 import { Route, Redirect, RouteProps } from "react-router-dom";
 
-interface PrivateRouteProps extends RouteProps {
-    component: any;
-}
-
-const PrivateRoute = ({ component: Component, ...rest }: PrivateRouteProps) => {
+const PrivateRoute: React.FC<RouteProps> = ({ children, ...rest }) => {
     const user = true
     return (
         <>
         {/* <Navbar/> */}
             <Route
                 {...rest}
-                render={(props) => (
+                render={({ location }) => (
                     user ? 
-                    <Component {...props} />
+                    children
                     : <Redirect to={{
                         pathname: "/login",
-                        state: { from: props.location },
+                        state: { from: location },
                     }}
                 />
                 )}
