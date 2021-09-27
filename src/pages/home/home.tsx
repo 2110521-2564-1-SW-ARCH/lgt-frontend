@@ -11,17 +11,20 @@ const Home: React.FC = () => {
     <div>
       <Navbar />
       <div className="home-container">
-        home
-        <SearchComponent
-          searchFunction={(type: string, params: any) =>
-            handleSearch(type, params)
-          }
-        />
-        <h1>Recommended Routes</h1>
-        <CardBox />
-        <CardBox />
-        <CardBox />
-        <CardBox />
+        <div className="bg-container">
+            <SearchComponent
+            searchFunction={(type: string, params: any) =>
+                handleSearch(type, params)
+            }
+            />
+            <div className="route-container">
+                <h1>Recommended Routes</h1>
+                <CardBox />
+                <CardBox />
+                <CardBox />
+                <CardBox />
+            </div>
+        </div>
       </div>
     </div>
   );
