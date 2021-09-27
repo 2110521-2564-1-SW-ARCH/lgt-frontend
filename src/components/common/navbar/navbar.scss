@@ -1,0 +1,51 @@
+@import '../../../styles/index.scss';
+
+.navbar-container {
+
+    background-color: #1890FF;
+    .height {
+        min-height: 55px;
+        max-height: 90px;
+    }
+    .desktop {
+        display: none;
+        .ant-menu-horizontal {
+            background-color: #1890FF;
+            display: flex;
+            align-items: center;
+            border: none;
+            a {
+                color: white;
+                height: 70px;
+            }
+        }
+        .desktop-logo {
+            width: calc(100vw - 450px);
+            text-align: left;
+            height: 48px;
+            a {
+                font-size: 36px;
+            }
+        }
+        .ant-menu-item {
+            a:hover {
+                border: none;
+            }
+            &:hover {
+                border-bottom: 2px solid white;
+            }
+        }
+        .ant-menu-submenu {
+            height: 70px;
+        }
+    }
+
+    @media screen and(min-width: 768px) {
+        // height: 90px;
+        .desktop {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
