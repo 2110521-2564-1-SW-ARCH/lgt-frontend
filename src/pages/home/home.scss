@@ -1,18 +1,16 @@
-
 .home-container {
-    .bg-container {
-        background-image: url(../../images/background.jpg);
-        background-position: center;
-        background-size: cover;
-        position: relative;
-        height: 600px;
-        z-index: -99;
-    }
-    .route-container {
-        width: 80%;
-        margin: 0px auto;
-        border-radius: 8px;
-        background: white;
-        padding: 20px;
-    }
+  .bg-container {
+    background-image: url(../../images/background.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    height: 600px;
+  }
+  .route-container {
+    width: 80%;
+    margin: 0px auto;
+    border-radius: 8px;
+    background: white;
+    padding: 20px;
+  }
 }
