@@ -12,7 +12,7 @@ const Navbar: React.FC = () => {
         <div className="desktop height">
           <Menu mode="horizontal">
             <Menu.Item key="1" className="desktop-logo">
-              <Link to="/">TRAVELLESTGO</Link>
+              <Link to="/">TRAVELLETSGO</Link>
             </Menu.Item>
             <Menu.Item key="2">
               <Link to="/transport">Transport</Link>
