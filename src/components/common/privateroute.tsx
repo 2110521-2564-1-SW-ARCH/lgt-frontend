@@ -1,15 +1,16 @@
 import React from 'react'
 import { Route, Redirect, RouteProps } from "react-router-dom";
+import Navbar from './navbar/navbar'
 
 const PrivateRoute: React.FC<RouteProps> = ({ children, ...rest }) => {
     const user = true
     return (
         <>
-        {/* <Navbar/> */}
+        <Navbar/>
             <Route
                 {...rest}
                 render={({ location }) => (
-                    user ? 
+                    user ?
                     children
                     : <Redirect to={{
                         pathname: "/login",
