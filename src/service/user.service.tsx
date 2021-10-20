@@ -71,16 +71,3 @@ export const deleteProfile = async (userId: any) => {
     throw error;
   }
 };
-
-export const getShopByUserID = async (userId: any) => {
-  try {
-    const result = await axios.get(API_URL + `/users/${userId}`, {
-      headers: header,
-    });
-    const userData = result.data;
-    return userData.shop_information;
-  } catch (error) {
-    console.log("error delete profile");
-    throw error;
-  }
-};
