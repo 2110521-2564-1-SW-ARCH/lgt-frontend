@@ -8,18 +8,18 @@ const PrivateRoute = ({ component: Component, ...rest }: any) => {
     return (
         <>
             <Navbar/>
-            <Route
-                {...rest}
-                render={(props) => (
-                    user ?
-                    <Component {...props} />
-                    : <Redirect to={{
-                        pathname: "/",
-                        state: { from: props.location },
-                    }}
+                <Route
+                    {...rest}
+                    render={(props) => (
+                        user ?
+                        <Component {...props} />
+                        : <Redirect to={{
+                            pathname: "/",
+                            state: { from: props.location },
+                        }}
+                    />
+                    )}
                 />
-                )}
-            />
         </>
     );
 };

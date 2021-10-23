@@ -7,12 +7,11 @@ import { useHistory } from "react-router-dom";
 import Notification from "../../components/common/notification";
 
 const Register: React.FC = () => {
-  const dateFormat = "DD/MM/YYYY";
+  const dateFormat = "YYYY/MM/DD";
   const history = useHistory();
 
   const handleRegister = async (e: any) => {
     e["birthdate"] = moment(e.birthdate).format(dateFormat);
-    e["role"] = parseInt(e.role);
     try {
       const res = await postRegister(e);
       Notification({
@@ -20,7 +19,7 @@ const Register: React.FC = () => {
         message: "Create account successful",
         desc: "Let's login!",
       });
-      history.push("/login");
+      history.push("/");
     } catch (error) {
       Notification({
         type: "error",
@@ -43,7 +42,7 @@ const Register: React.FC = () => {
           <Form onFinish={handleRegister} onFinishFailed={handleRegisterFailed}>
             <Form.Item
               label="Firstname"
-              name="firstname"
+              name="firstName"
               rules={[
                 { required: true, message: "Please enter your firstname" },
               ]}
@@ -52,7 +51,7 @@ const Register: React.FC = () => {
             </Form.Item>
             <Form.Item
               label="Lastname"
-              name="lastname"
+              name="lastName"
               rules={[
                 { required: true, message: "Please enter your lastname" },
               ]}
@@ -60,20 +59,13 @@ const Register: React.FC = () => {
               <Input placeholder="Enter your last name" className="input" />
             </Form.Item>
             <Form.Item
-              label="Email"
-              name="email"
+              label="Username"
+              name="userName"
               rules={[
-                {
-                  required: true,
-                  message: "Please enter your email",
-                },
-                {
-                  type: "email",
-                  message: "Invalid email format",
-                },
+                { required: true, message: "Please enter your username" },
               ]}
             >
-              <Input placeholder="Enter your email" className="input" />
+              <Input placeholder="Enter your username" className="input" />
             </Form.Item>
             <Form.Item
               label="Password"
@@ -128,23 +120,6 @@ const Register: React.FC = () => {
             </Form.Item>
             <Form.Item label="birthdate" name="birthdate">
               <DatePicker format={dateFormat} />
-            </Form.Item>
-            <Form.Item
-              label="Phone number"
-              name="phoneNo"
-              rules={[
-                { required: true, message: "Please enter your phone number" },
-                { len: 10, message: "Phone number only 10 characters" },
-                {
-                  pattern: /^[0-9\b]+$/,
-                  message: "Please enter as number",
-                },
-              ]}
-            >
-              <Input
-                placeholder="Enter your phone number"
-                className="input-small"
-              />
             </Form.Item>
             <Form.Item>
               <Button htmlType="submit" className="button">
