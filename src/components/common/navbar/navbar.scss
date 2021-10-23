@@ -27,6 +27,13 @@
                 font-size: 36px;
             }
         }
+        .logout-tab {
+            color: white;
+            &:hover {
+                color: white;
+                border-bottom: 2px solid white;
+            }
+        }
         .ant-menu-item {
             a:hover {
                 border: none;

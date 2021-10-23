@@ -9,7 +9,6 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="home-container">
         <div className="bg-container">
             <SearchComponent

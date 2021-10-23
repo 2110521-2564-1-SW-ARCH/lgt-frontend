@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Input, Form } from "antd";
 import { useHistory } from "react-router-dom";
 import "./resetpassword.scss";
-import { postResetPassword } from "../../service/user.service";
+// import { postResetPassword } from "../../service/user.service";
 import Notification from "../../components/common/notification";
 
 const ResetPassword: React.FC = () => {
@@ -11,12 +11,12 @@ const ResetPassword: React.FC = () => {
   const handleSentReset = async (e: any) => {
     try {
       console.log(e);
-      await postResetPassword(e);
-      Notification({
-        type: "success",
-        message: "Reset password success",
-        desc: "your new password was sent to your email",
-      });
+      // await postResetPassword(e);
+      // Notification({
+      //   type: "success",
+      //   message: "Reset password success",
+      //   desc: "your new password was sent to your email",
+      // });
       history.push("/login");
     } catch (error) {
       Notification({

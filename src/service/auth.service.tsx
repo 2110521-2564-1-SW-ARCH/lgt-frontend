@@ -2,14 +2,14 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useHistory } from "react-router-dom";
 
-const API_URL = "http://localhost:8080/api";
+const API_URL = "http://localhost:8000/api";
 
-export const login = async (email: any, password: any) => {
+export const login = async (values: any) => {
   return await axios
-    .post(API_URL + "/users/login", { email, password })
+    .post(API_URL + "/auth", values)
     .then((response) => {
       console.log(response);
-      if (response.data.token) {
+      if (response.data) {
         sessionStorage.setItem("user", JSON.stringify(response.data));
       }
       return response.data;
@@ -18,7 +18,7 @@ export const login = async (email: any, password: any) => {
 
 export const getUserInfo = () => {
   try {
-    const token = sessionStorage.getItem("user") || '{}';
+    const token = sessionStorage.getItem("user") || "{}";
     const user_info: any = jwt_decode(token);
     const info: any = {};
     info['userId'] = user_info['userID'];

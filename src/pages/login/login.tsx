@@ -10,7 +10,7 @@ const Login: React.FC = () => {
 
   const handleLogin = async (e: any) => {
     try {
-      await login(e.email, e.password);
+      await login(e);
       Notification({
         type: "success",
         message: "Login success",
@@ -22,7 +22,7 @@ const Login: React.FC = () => {
       Notification({
         type: "error",
         message: "Login fail",
-        desc: "email or password incorrect",
+        desc: "username or password incorrect",
       });
     }
     console.log(e);
@@ -40,20 +40,16 @@ const Login: React.FC = () => {
           <div className="text-big semi-bold m-b-16">TRAVELLETSGO</div>
           <Form onFinish={handleLogin} onFinishFailed={handleLoginFailed}>
             <Form.Item
-              label="Email"
-              name="email"
+              label="Username"
+              name="userName"
               rules={[
                 {
                   required: true,
-                  message: "Please enter your email",
-                },
-                {
-                  type: "email",
-                  message: "Invalid email format",
-                },
+                  message: "Please enter your username",
+                }
               ]}
             >
-              <Input placeholder="Enter your email" className="input" />
+              <Input placeholder="Enter your username" className="input" />
             </Form.Item>
             <Form.Item
               label="Password"
