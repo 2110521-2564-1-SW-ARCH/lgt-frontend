@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Input, Form } from "antd";
 import { Link, useHistory } from "react-router-dom";
 import "./login.scss";
-import { login } from "../../service/auth.service";
+import { loginApi } from "../../service/auth.service";
 import Notification from "../../components/common/notification";
 
 const Login: React.FC = () => {
@@ -10,7 +10,7 @@ const Login: React.FC = () => {
 
   const handleLogin = async (e: any) => {
     try {
-      await login(e);
+      await loginApi(e);
       Notification({
         type: "success",
         message: "Login success",
