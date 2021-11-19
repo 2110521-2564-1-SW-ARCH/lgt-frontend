@@ -1,37 +1,54 @@
-import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { useHistory } from "react-router-dom";
+import { axiosStore, axiosTokenStore } from "./axiosStore";
+interface ILoginApi {
+    userName: string
+    password: string
+}
+interface ILoginApiResponse {
+    access_token: string,
+    user: {
+        userId: number,
+        firstName: string,
+        lastName: string,
+        username: string
+    }
+}
 
-const API_URL = "http://localhost:8000/api";
-
-export const login = async (values: any) => {
-  return await axios
-    .post(API_URL + "/auth", values)
-    .then((response) => {
-      console.log(response);
-      if (response.data) {
-        sessionStorage.setItem("user", JSON.stringify(response.data));
-      }
-      return response.data;
-    });
-};
+export const loginApi = async (
+    body: ILoginApi
+    ): Promise<ILoginApiResponse> => {
+    return await axiosStore
+      .post<ILoginApiResponse>(
+          '/api/auth', 
+          body
+      )
+      .then((response) => {
+        if (response.data) {
+          localStorage.setItem("token", response.data.access_token)
+          localStorage.setItem("firstName", response.data.user.firstName)
+          localStorage.setItem("lastName", response.data.user.lastName)
+        }
+        return response.data
+      })
+      .catch((error) => {
+          throw Error(`[loginApi API] error: ${error}`) 
+      })
+}
 
 export const getUserInfo = () => {
   try {
-    const token = sessionStorage.getItem("user") || "{}";
-    const user_info: any = jwt_decode(token);
-    const info: any = {};
-    info['userId'] = user_info['userID'];
-    return info;
+    const token = localStorage.getItem("token") || "{}";
+    const user_info: any = jwt_decode(token)
+    return user_info.userId
   } catch (error) {
     return false;
   }
 };
 
 export const logout = () => {
-  sessionStorage.removeItem("user");
+  localStorage.removeItem("token");
 };
 
 export const getCurrentUser = () => {
-  return JSON.parse(sessionStorage.getItem("user") || '{}');
+  return JSON.parse(localStorage.getItem("token") || '{}');
 };

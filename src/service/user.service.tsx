@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://localhost:8000/api";
+const API_URL = `${process.env.REACT_APP_GATEWAY_API_HOST}:${process.env.REACT_APP_GATEWAY_API_POST}`;
 
 const header = {
   "Content-Type": "application/json",
@@ -23,7 +23,6 @@ export const getUserData = async (id: any) => {
 
 export const postRegister = async (values: any) => {
   try {
-    console.log(values)
     return await axios.post(API_URL + "/user/create-user", values);
   } catch (error) {
     console.log("error register");
