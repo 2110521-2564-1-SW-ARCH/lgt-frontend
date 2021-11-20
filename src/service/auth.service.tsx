@@ -24,7 +24,7 @@ export const loginApi = async (
       )
       .then((response) => {
         if (response.data) {
-          localStorage.setItem("token", response.data.access_token)
+          localStorage.setItem("access_token", response.data.access_token)
           localStorage.setItem("firstName", response.data.user.firstName)
           localStorage.setItem("lastName", response.data.user.lastName)
         }
@@ -37,7 +37,7 @@ export const loginApi = async (
 
 export const getUserInfo = () => {
   try {
-    const token = localStorage.getItem("token") || "{}";
+    const token = localStorage.getItem("access_token") || "{}";
     const user_info: any = jwt_decode(token)
     return user_info.userId
   } catch (error) {
