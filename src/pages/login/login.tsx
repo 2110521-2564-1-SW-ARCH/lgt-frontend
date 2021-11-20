@@ -14,7 +14,7 @@ const Login: React.FC = () => {
       Notification({
         type: "success",
         message: "Login success",
-        desc: "enjoy your shopping!",
+        desc: "Let's go travel!",
       });
       history.push("/home");
     } catch (error) {

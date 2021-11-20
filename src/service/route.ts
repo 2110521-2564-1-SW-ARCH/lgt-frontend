@@ -14,7 +14,7 @@ interface IAddRouteApi {
 }
 
 export const getRouteApi = async (body: IGetRouteApi) => {
-    return await axiosStore
+    return await axiosTokenStore
         .post(
             '/api/routes/search-route',
             body

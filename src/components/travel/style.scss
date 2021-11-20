@@ -1,0 +1,76 @@
+
+.travel-timeline-container {
+    width: 90%;
+    margin: 0px auto;
+    border-radius: 8px;
+    background: white;
+    // background: #f6f6f6;
+    padding: 40px 30px;
+    display: flex;
+    min-height: 300px;
+    .blue-section {
+        background-color: #CFE8FF;
+        padding: 10px 20px;
+        h2 {
+            margin: 0;
+            color: #0062bd;
+        }
+    }
+    .ant-card {
+        width: 100%;
+        .ant-card-head {
+            background-color: #fbfbfb;
+        }
+        .ant-card-head-title {
+            .title-value {
+                margin: 0 6px;
+                font-size: 17px;
+                color: #0062bd;
+            }
+            .time-section {
+                color: gray;
+            }
+        }
+
+    }
+    .ant-timeline {
+        width: 90%;
+        .ant-timeline-item {
+            padding: 32px;
+            border-radius: 8px;
+             &:hover {
+              background-color: rgb(252, 252, 252);
+            }
+            .ant-timeline-item-content {
+              top: none;
+              position: relative;
+              .vehicle-section {
+                  position: absolute;
+                  top: calc(-32px - 12.5px);
+                  height: 25px;
+                  span {
+                      margin: 4px;
+                      font-size: 16px;
+                      color: #1890FF;
+                  }
+                  .ant-divider-vertical {
+                      margin: 0 6px;
+                      border-color: #1890FF;
+                  }
+              }
+            }
+            .ant-timeline-item-head {
+              top: 50%;
+            }
+            .ant-timeline-item-tail {
+              top: 0;
+              left: 36px;
+              height: 100%;
+            }
+          }
+          .ant-timeline-item-last > .ant-timeline-item-tail {
+            height: 50%;
+            display: block;
+          }
+    }
+}

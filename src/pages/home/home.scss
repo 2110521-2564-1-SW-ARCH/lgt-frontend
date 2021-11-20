@@ -12,5 +12,17 @@
     border-radius: 8px;
     background: white;
     padding: 20px;
+    min-height: 300px;
+  }
+  .loading-container {
+    width: 80%;
+    margin: 0px auto;
+    border-radius: 8px;
+    background: white;
+    padding: 20px;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
