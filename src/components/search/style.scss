@@ -47,6 +47,9 @@
 
       .form-input {
         padding: 0.5em 0;
+        .ant-select {
+          width: 100%
+        }
         .ant-input-affix-wrapper-lg {
           border-radius: 10px;
         }
