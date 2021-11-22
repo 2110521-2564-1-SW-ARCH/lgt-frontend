@@ -1,31 +1,12 @@
 import { Row, Col, Image } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import React, { useState, useEffect } from "react";
-import { ILocationDetail } from "../../helpers/interface/location";
+import React from "react";
+import { IPlanDetail } from "../../helpers/interface/travelcatalog";
 import "./card.scss";
-// interface ITravelTimeline {
-//     routeResult: IRoute | null
-//     paramSearch: string[]
-// }
 
-const CardBox: React.FC<ILocationDetail> = (
-  locationDetail: ILocationDetail
-) => {
-  console.log(locationDetail);
-  const {
-    name,
-    description,
-    type,
-    address,
-    district,
-    subDistrict,
-    postCode,
-    province,
-    lattitude,
-    longitude,
-    imgURL,
-    closestStation,
-  } = locationDetail;
+const CardBox: React.FC<{ planDetail: IPlanDetail }> = ({ planDetail }) => {
+  const { name, description, plan, userName } = planDetail;
+  const { imgURL, district } = plan[0];
   return (
     <div className="card-container">
       <Row justify="center" align="middle">
@@ -41,7 +22,7 @@ const CardBox: React.FC<ILocationDetail> = (
           <h2>{name}</h2>
           <div className="user">
             <UserOutlined />
-            <h3>mintcnn</h3>
+            <h3>{userName}</h3>
           </div>
           <h4>{`เขต ${district}`}</h4>
           <div className="text">{description}</div>

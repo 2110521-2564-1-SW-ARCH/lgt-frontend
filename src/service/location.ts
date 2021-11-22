@@ -18,7 +18,7 @@ interface IAddLocationApi {
 export const getLocationAllApi = async () => {
   return await axiosStore
     .get("/location/all")
-    .then((response) => response.data)
+    .then((response) => response.data.data)
     .catch((error) => {
       throw Error(`[getLocationAllApi API] error: ${error}`);
     });

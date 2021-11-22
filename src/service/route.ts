@@ -70,11 +70,9 @@ export const getAllOptionRouteApi = async () => {
     .all([
       axiosStore.get("/api/routes/source"),
       axiosStore.get("/api/routes/destination"),
-      axiosStore.get("/location/all"),
     ])
     .then((response) => {
-      console.log(response);
-      return [response[0].data, response[1].data, response[2].data.data];
+      return [response[0].data, response[1].data];
     })
     .catch((error) => {
       throw Error(`[getAllOptionRouteApi API] error: ${error}`);
