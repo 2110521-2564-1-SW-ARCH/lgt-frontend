@@ -1,38 +1,39 @@
 import jwt_decode from "jwt-decode";
 import { axiosStore, axiosTokenStore } from "./axiosStore";
 interface ILoginApi {
-    userName: string
-    password: string
+  userName: string
+  password: string
 }
 interface ILoginApiResponse {
-    access_token: string,
-    user: {
-        userId: number,
-        firstName: string,
-        lastName: string,
-        username: string
-    }
+  access_token: string,
+  user: {
+    userId: number,
+    firstName: string,
+    lastName: string,
+    username: string
+  }
 }
 
 export const loginApi = async (
-    body: ILoginApi
-    ): Promise<ILoginApiResponse> => {
-    return await axiosStore
-      .post<ILoginApiResponse>(
-          '/api/auth', 
-          body
-      )
-      .then((response) => {
-        if (response.data) {
-          localStorage.setItem("access_token", response.data.access_token)
-          localStorage.setItem("firstName", response.data.user.firstName)
-          localStorage.setItem("lastName", response.data.user.lastName)
-        }
-        return response.data
-      })
-      .catch((error) => {
-          throw Error(`[loginApi API] error: ${error}`) 
-      })
+  body: ILoginApi
+): Promise<ILoginApiResponse> => {
+  return await axiosStore
+    .post<ILoginApiResponse>(
+      '/api/auth',
+      body
+    )
+    .then((response) => {
+      if (response.data) {
+        localStorage.setItem("access_token", response.data.access_token)
+        localStorage.setItem("firstName", response.data.user.firstName)
+        localStorage.setItem("lastName", response.data.user.lastName)
+        localStorage.setItem("userId", JSON.stringify(Number(response.data.user.userId)))
+      }
+      return response.data
+    })
+    .catch((error) => {
+      throw Error(`[loginApi API] error: ${error}`)
+    })
 }
 
 export const getUserInfo = () => {

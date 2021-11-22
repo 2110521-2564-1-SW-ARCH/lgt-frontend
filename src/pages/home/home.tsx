@@ -1,20 +1,21 @@
-import { CardBox, SearchComponent, TravelTimeline } from "../../components";
-import Navbar from "../../components/common/navbar/navbar";
 import "./home.scss";
 import { useState, useCallback, useEffect } from "react";
-import { getRouteApi } from "../../service/route";
-import { getLocationKeywordApi } from "../../service/location";
-import { IRoute } from "../../helpers/interface/route";
-import { ILocationDetail } from "../../helpers/interface/location";
 import { Spin } from "antd";
 
+import { CardBox, SearchComponent, TravelTimeline } from "../../components";
+import { getRouteApi } from "../../service/route";
+import { getLocationKeywordApi } from "../../service/location";
+import { getAllPlanApi } from "../../service/travelCatalog";
+import { IRoute } from "../../helpers/interface/route";
+import { ILocationDetail } from "../../helpers/interface/location";
+import { IPlanDetail } from "../../helpers/interface/travelcatalog";
+
 const Home: React.FC = () => {
-  const [mode, setMode] = useState<string>("travel");
+  const [mode, setMode] = useState<string>("recommend");
   const [paramSearch, setParamSearch] = useState<string[]>([]);
   const [resultRoute, setResultRoute] = useState<IRoute | null>(null);
-  const [resultLocation, setResultLocation] = useState<
-    ILocationDetail[] | null
-  >(null);
+  const [resultLocation, setResultLocation] = useState<ILocationDetail[] | null>(null);
+  const [recommendPlan, setRecommendPlan] = useState<IPlanDetail[] | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleSearch = (type: "travel" | "transport", params: any) => {
@@ -30,6 +31,90 @@ const Home: React.FC = () => {
       setParamSearch([params.source, params.destination]);
     }
   };
+
+  const fetchRecommendRoute = useCallback(async () => {
+    // const res = await getAllPlanApi();
+    // console.log(res);
+    // setRecommendPlan(res)
+    const mock: IPlanDetail[] = [
+      {
+        userName: "pim",
+        name: "plan1",
+        description: "desc-plan1",
+        plan: [
+          {
+            id: 1,
+            name: "Lido",
+            description: "test",
+            type: "test",
+            address: "test",
+            district: "test",
+            subDistrict: "test",
+            postCode: "test",
+            province: "test",
+            latitude: "1",
+            longitude: "1",
+            imgURL: "test",
+            closestStation: 1,
+          },
+          {
+            id: 2,
+            name: "Faculty of Political Science",
+            description: "test",
+            type: "test",
+            address: "test",
+            district: "test",
+            subDistrict: "test",
+            postCode: "test",
+            province: "test",
+            latitude: "1",
+            longitude: "1",
+            imgURL: "test",
+            closestStation: 1,
+          },
+        ],
+      },
+      {
+        userName: "pim3",
+        name: "plan1",
+        description: "desc-plan1",
+        plan: [
+          {
+            id: 1,
+            name: "Lido",
+            description: "test",
+            type: "test",
+            address: "test",
+            district: "test",
+            subDistrict: "test",
+            postCode: "test",
+            province: "test",
+            latitude: "1",
+            longitude: "1",
+            imgURL: "test",
+            closestStation: 1,
+          },
+          {
+            id: 2,
+            name: "Faculty of Political Science",
+            description: "test",
+            type: "test",
+            address: "test",
+            district: "test",
+            subDistrict: "test",
+            postCode: "test",
+            province: "test",
+            latitude: "1",
+            longitude: "1",
+            imgURL: "test",
+            closestStation: 1,
+          },
+        ],
+      },
+    ];
+    setRecommendPlan(mock);
+    setLoading(false);
+  }, []);
 
   const fetchLocation = async (param: string) => {
     const res = await getLocationKeywordApi(param);
@@ -48,17 +133,13 @@ const Home: React.FC = () => {
     }
   };
 
-  const renderTravel = () => {
+  const renderRecommend = () => {
     return (
       <div className="route-container">
         <h1>Recommended Routes</h1>
-        {/* {resultLocation?.map((each) => {
-          console.log(each);
-        })} */}
-        {/* <CardBox />
-        <CardBox />
-        <CardBox />
-        <CardBox /> */}
+        {recommendPlan?.map((each: IPlanDetail, index: Number) => (
+          <CardBox key={`recommend-${index}`} planDetail={each} />
+        ))}
       </div>
     );
   };
@@ -80,18 +161,24 @@ const Home: React.FC = () => {
           <Spin />
         </div>
       );
-    } else if (mode === "travel" && !paramSearch) {
-      return renderTravel();
-    } else if (mode === "travel" && paramSearch) {
+    }
+    if (mode === "recommend") {
+      return renderRecommend();
+    }
+    if (mode === "travel" && paramSearch) {
       return renderTravelSearch();
-    } else if (mode === "transport" && paramSearch.length === 2) {
+    }
+    if (mode === "transport" && paramSearch.length === 2) {
       return (
         <TravelTimeline routeResult={resultRoute} paramSearch={paramSearch} />
       );
-    } else {
-      console.log("aa");
     }
   };
+
+  useEffect(() => {
+    setLoading(true);
+    fetchRecommendRoute();
+  }, [fetchRecommendRoute]);
 
   return (
     <div>

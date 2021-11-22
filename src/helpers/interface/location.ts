@@ -8,7 +8,7 @@ export interface ILocationDetail {
   subDistrict: string;
   postCode: string;
   province: string;
-  lattitude?: string;
+  latitude?: string;
   longitude?: string;
   imgURL?: string;
   closestStation?: number;
