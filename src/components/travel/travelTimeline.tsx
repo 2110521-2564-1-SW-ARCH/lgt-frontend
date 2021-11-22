@@ -100,9 +100,12 @@ const TravelTimeline: React.FC<ITravelTimeline> = ({
         )
     }
 
-    console.log('routeResult', routeResult)
     if (routeResult?.route.length === 0) {
-        return <Empty />
+        return (
+            <div className="travel-timeline-container center">
+                <Empty />
+            </div>
+        )
     }
     return (
         <div className="travel-timeline-container">

@@ -1,3 +1,4 @@
+import axios from "axios"
 import { axiosTokenStore, axiosStore } from "./axiosStore"
 
 interface IGetRouteApi {
@@ -49,5 +50,41 @@ export const deleteRouteApi = async (id: number) => {
         })
         .catch((error) => {
             throw Error(`[deleteRouteApi API] error: ${error}`)
+        })
+}
+
+export const getSourceRouteApi = async () => {
+    return await axiosStore
+        .get('/api/routes/source')
+        .then((response) => (
+            response.data
+        ))
+        .catch((error) => {
+            throw Error(`[getSourceRouteApi API] error: ${error}`)
+        })
+}
+
+export const getDestinationRouteApi = async () => {
+    return await axiosStore
+        .get('/api/routes/destination')
+        .then((response) => (
+            response.data
+        ))
+        .catch((error) => {
+            throw Error(`[getDestinationRouteApi API] error: ${error}`)
+        })
+}
+
+export const getAllOptionRouteApi = async () => {
+    return await axios
+        .all([
+            axiosStore.get('/api/routes/source'),
+            axiosStore.get('/api/routes/destination'),
+        ])
+        .then((response) => {
+            return [response[0].data, response[1].data]
+        })
+        .catch((error) => {
+            throw Error(`[getAllOptionRouteApi API] error: ${error}`)
         })
 }
