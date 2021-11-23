@@ -17,10 +17,11 @@ const MyRoutes: React.FC = () => {
         // setMyRoute(res)
         const mock: IPlanDetail[] = [
             {
+                _id: "012345",
                 userName: "pim",
                 name: "plan1",
                 description: "desc-plan1",
-                plan: [
+                locations: [
                     {
                         id: 1,
                         name: "Lido",
@@ -54,10 +55,11 @@ const MyRoutes: React.FC = () => {
                 ],
             },
             {
+                _id: "rekogwokbork",
                 userName: "pim3",
                 name: "plan1",
                 description: "desc-plan1",
-                plan: [
+                locations: [
                     {
                         id: 1,
                         name: "Lido",

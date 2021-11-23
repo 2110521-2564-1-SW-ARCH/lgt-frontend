@@ -1,0 +1,156 @@
+.travel-timeline-container {
+  width: 90%;
+  margin: 0px auto;
+  border-radius: 8px;
+  background: white;
+  // background: #f6f6f6;
+  padding: 40px 30px;
+  display: flex;
+  min-height: 300px;
+  &.center {
+    justify-content: center;
+    align-items: center;
+  }
+  .blue-section {
+    background-color: #cfe8ff;
+    padding: 10px 20px;
+    .head {
+      color: #0062bd;
+      font-size: 2em;
+    }
+
+    .location-container {
+      display: flex;
+
+      .img-section {
+        display: flex;
+        padding: 0.5em;
+      }
+
+      .detail-container {
+        width: 100%;
+        padding: 0.5em 0 0 0.5em;
+        // background-color: lightsalmon;
+        display: flex;
+        flex-direction: column;
+        // padding-top: 0.5em;
+
+        .address-container {
+          display: flex;
+          align-items: center;
+          font-size: 1em;
+
+          .icon {
+            padding-right: 0.5em;
+          }
+        }
+
+        .description {
+          font-size: 1em;
+          height: 80px;
+          max-height: 110px;
+          word-break: break-word;
+          white-space: pre-line;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          display: -webkit-box;
+          width: 100%;
+          -webkit-line-clamp: 5;
+          -webkit-box-orient: vertical;
+        }
+
+        .additional-container {
+          display: flex;
+          .title {
+            padding-right: 1em;
+            color: #0875ac;
+          }
+          .value {
+            color: #67b8de;
+            // margin: 0 0.5em;
+            // border-radius: 0.2em;
+            // padding: 0.1em 0.5em;
+            // background-color: #bfd7ec;
+          }
+        }
+      }
+    }
+    // .description {
+    //     h2 {
+    //       color: #67b8de;
+    //       margin-bottom: 0.3em;
+    //     }
+    //     .user {
+    //       span {
+    //         margin-right: 5px;
+    //       }
+    //       h3 {
+    //         display: inline;
+    //         color: #0875ac;
+    //       }
+    //       .anticon {
+    //         font-size: 18px;
+    //         color: #0875ac;
+    //       }
+    //     }
+    //     .text {
+    //       font-size: 15px;
+    //       height: 110px;
+    //       max-height: 110px;
+    //       word-break: break-word;
+    //       white-space: pre-line;
+    //       text-overflow: ellipsis;
+    //       overflow: hidden;
+    //       display: -webkit-box;
+    //       width: 100%;
+    //       -webkit-line-clamp: 5;
+    //       -webkit-box-orient: vertical;
+    //     }
+    // }
+    // h2 {
+    //   margin: 0;
+    //   color: #0062bd;
+    // }
+  }
+
+  .ant-timeline {
+    width: 90%;
+    .ant-timeline-item {
+      padding: 32px;
+      border-radius: 8px;
+      &:hover {
+        background-color: rgb(252, 252, 252);
+      }
+      .ant-timeline-item-content {
+        top: none;
+        position: relative;
+        .vehicle-section {
+          position: absolute;
+          top: calc(-32px - 12.5px);
+          height: 25px;
+          span {
+            margin: 4px;
+            font-size: 16px;
+            color: #1890ff;
+          }
+          .ant-divider-vertical {
+            margin: 0 6px;
+            border-color: #1890ff;
+          }
+        }
+      }
+      .ant-timeline-item-head {
+        top: 50%;
+      }
+      .ant-timeline-item-tail {
+        top: 0;
+        left: 36px;
+        height: 100%;
+      }
+    }
+    .ant-timeline-item-last > .ant-timeline-item-tail {
+      height: 50%;
+      display: block;
+    }
+  }
+}

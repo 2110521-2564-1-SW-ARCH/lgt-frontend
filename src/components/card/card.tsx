@@ -3,12 +3,20 @@ import { UserOutlined } from "@ant-design/icons";
 import React from "react";
 import { IPlanDetail } from "../../helpers/interface/travelcatalog";
 import "./card.scss";
+import { useHistory } from "react-router-dom";
 
 const CardBox: React.FC<{ planDetail: IPlanDetail }> = ({ planDetail }) => {
-  const { name, description, plan, userName } = planDetail;
-  const { imgURL, district } = plan[0];
+  const { _id, name, description, locations, userName } = planDetail;
+  const { imgURL, district } = locations[0];
+  const history = useHistory();
+
+  const handleOnClick = () => {
+    let params = { pathname: `/routes/${_id}`, state: { locationList: locations } }
+    history.push(params)
+  }
+
   return (
-    <div className="card-container">
+    <div className="card-container" onClick={() => handleOnClick()}>
       <Row justify="center" align="middle">
         <Col span={8} className="img-section">
           <Image
