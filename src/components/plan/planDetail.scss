@@ -1,0 +1,119 @@
+.travel-timeline-container {
+  width: 90%;
+  margin: 0px auto;
+  border-radius: 8px;
+  background: white;
+  padding: 40px 30px;
+  display: flex;
+  min-height: 300px;
+  &.center {
+    justify-content: center;
+    align-items: center;
+  }
+  .blue-section {
+    padding: 10px 20px;
+
+    .head {
+      color: #2e6eb6;
+      font-size: 2em;
+      padding: 0.5em 0 0 0.5em;
+    }
+
+    .ant-divider.ant-divider-horizontal {
+      margin: 10px 0;
+    }
+
+    .location-container {
+      display: flex;
+
+      .img-section {
+        display: flex;
+        padding: 0.5em;
+      }
+
+      .detail-container {
+        width: 100%;
+        padding: 0.5em 0 0 0.5em;
+        display: flex;
+        flex-direction: column;
+
+        .address-container {
+          display: flex;
+          align-items: center;
+          font-size: 1em;
+
+          .icon {
+            padding-right: 0.5em;
+          }
+        }
+
+        .description {
+          color: #808080;
+          font-size: 1em;
+          height: 80px;
+          max-height: 110px;
+          word-break: break-word;
+          white-space: pre-line;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          display: -webkit-box;
+          width: 100%;
+          -webkit-line-clamp: 5;
+          -webkit-box-orient: vertical;
+        }
+
+        .additional-container {
+          display: flex;
+          .title {
+            padding-right: 1em;
+            color: #0875ac;
+          }
+          .value {
+            color: #75c9f3;
+          }
+        }
+      }
+    }
+  }
+
+  .ant-timeline {
+    width: 90%;
+    .ant-timeline-item {
+      padding: 32px;
+      border-radius: 8px;
+      &:hover {
+        background-color: rgb(252, 252, 252);
+      }
+      .ant-timeline-item-content {
+        top: none;
+        position: relative;
+        .vehicle-section {
+          position: absolute;
+          top: calc(-32px - 12.5px);
+          height: 25px;
+          span {
+            margin: 4px;
+            font-size: 16px;
+            color: #1890ff;
+          }
+          .ant-divider-vertical {
+            margin: 0 6px;
+            border-color: #1890ff;
+          }
+        }
+      }
+      .ant-timeline-item-head {
+        top: 50%;
+      }
+      .ant-timeline-item-tail {
+        top: 0;
+        left: 36px;
+        height: 100%;
+      }
+    }
+    .ant-timeline-item-last > .ant-timeline-item-tail {
+      height: 50%;
+      display: block;
+    }
+  }
+}

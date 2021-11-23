@@ -1,9 +1,10 @@
 import { ILocationDetail } from "./location";
 
 export interface IPlanDetail {
-  name: string;
+  _id: string;
+  planName: string;
   description?: string;
-  plan: ILocationDetail[];
+  locations: ILocationDetail[];
   userName: string;
 }
 

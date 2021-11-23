@@ -33,12 +33,9 @@ const Navbar: React.FC = () => {
             <Link to="/my-routes">My routes</Link>
           </Menu.Item>
           <Menu.Item key="3">
-              <Link to="/transport/add">Add Transport</Link>
-            </Menu.Item>
-          <Menu.Item key="4">
-            <Link to="/profile">Profile</Link>
+            <Link to="/transport/add">Add Transport</Link>
           </Menu.Item>
-          <Menu.Item key="5" className="logout-tab">
+          <Menu.Item key="4" className="logout-tab">
             <div onClick={showLogoutModal}>Logout</div>
           </Menu.Item>
         </Menu>

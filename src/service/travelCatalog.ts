@@ -12,9 +12,9 @@ export const getAllPlanApi = async () => {
         })
 }
 
-export const getUserPlanApi = async (id: number) => {
+export const getUserPlanApi = async (username: string) => {
     return await axiosTokenStore
-        .get(`/api/travel-catalog/get-user-plan/${id}`)
+        .get(`/api/travel-catalog/get-user-plan/${username}`)
         .then((response) => {
             return response.data
         })
