@@ -1,11 +1,12 @@
 .home-container {
-  .bg-container {
-    background-image: url(../../images/background.jpg);
-    background-position: center;
-    background-size: cover;
-    position: relative;
-    height: 600px;
-  }
+  // .bg-container {
+  //   background-image: url(../../images/background.jpg);
+  //   background-position: center;
+  //   background-size: cover;
+  //   position: relative;
+  //   height: 600px;
+  // }
+  padding-bottom: 50px;
   .route-container {
     width: 80%;
     margin: 0px auto;
@@ -24,5 +25,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
   }
 }

@@ -8,6 +8,7 @@ const PrivateRoute = ({ component: Component, ...rest }: any) => {
     return (
         <>
             <Navbar/>
+            <div className="bg-container">
                 <Route
                     {...rest}
                     render={(props) => (
@@ -20,6 +21,7 @@ const PrivateRoute = ({ component: Component, ...rest }: any) => {
                     />
                     )}
                 />
+            </div>
         </>
     );
 };

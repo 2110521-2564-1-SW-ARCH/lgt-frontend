@@ -7,3 +7,11 @@ export interface IPlanDetail {
   locations: ILocationDetail[];
   userName: string;
 }
+
+export interface ISavePlan {
+  userName: string
+  planName: string
+  locations: number[]
+  description: string
+  isPublic: boolean
+}

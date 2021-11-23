@@ -6,6 +6,9 @@ import './style.scss'
 import busImg from '../../images/bus_icon.png'
 import carImg from '../../images/car_icon.png'
 import trainImg from '../../images/train_icon.png'
+import bicycleImg from '../../images/bicycle.png'
+import motorcycleImg from '../../images/motorcycle.png'
+
 import Item from "antd/lib/list/Item"
 
 interface ITravelTimeline {
@@ -18,19 +21,25 @@ const TravelTimeline: React.FC<ITravelTimeline> = ({
 }) => {
 
     const typeIcon = (type: string, additional_type: string) => {
-        if (type === "bus") {
-            return <Image preview={false} width={25} height={25} src={busImg} alt="bus_icon"/>
-        } else if (type === "taxi") {
-            return <Image preview={false} width={25} height={25} src={carImg} alt="car_icon"/>
-        } else if (type === "car") {
-            return <Image preview={false} width={25} height={25} src={carImg} alt="car_icon"/>
-        } else if (type === "train") {
-            return <Image preview={false} width={25} height={25} src={trainImg} alt="train_icon"/>
+        switch (type) {
+            case "bus":
+                return <Image preview={false} width={25} height={25} src={busImg} alt="bus_icon"/>
+            case "taxi":
+                return <Image preview={false} width={25} height={25} src={carImg} alt="car_icon"/>
+            case "car":
+                return <Image preview={false} width={25} height={25} src={carImg} alt="car_icon"/>
+            case "train":
+                return <Image preview={false} width={25} height={25} src={trainImg} alt="train_icon"/>
+            case "bicycle":
+                return <Image preview={false} width={25} height={25} src={bicycleImg} alt="bicycle_icon"/>
+            case "motorcycle":
+                return <Image preview={false} width={25} height={25} src={motorcycleImg} alt="motorcycle_icon"/>
+            default:
+                return null
         }
     }
 
     const prefixAdditionalType = (additional_type: string) => {
-        console.log(parseInt(additional_type))
         if (parseInt(additional_type)) {
             return <span>สาย</span>
         }

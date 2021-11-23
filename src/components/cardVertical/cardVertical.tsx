@@ -7,7 +7,6 @@ import {PlaceToVisitContext} from "../../utils/placeToVisitStore";
 const CardVerticalBox: React.FC<{ locationDetail: ILocationDetail }> = (
     {locationDetail}
 ) => {
-    console.log(locationDetail);
     const {
         name,
         description,

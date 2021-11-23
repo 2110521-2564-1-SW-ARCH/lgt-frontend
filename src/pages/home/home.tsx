@@ -9,9 +9,11 @@ import { IRoute } from "../../helpers/interface/route";
 import { ILocationDetail } from "../../helpers/interface/location";
 import { IPlanDetail } from "../../helpers/interface/travelcatalog";
 import PlaceToVisitProvider, { PlaceToVisitContext } from "../../utils/placeToVisitStore";
+import { useHistory } from "react-router-dom";
 
 
 const Home: React.FC = () => {
+  const history = useHistory()
   const [mode, setMode] = useState<string>("recommend");
   const [paramSearch, setParamSearch] = useState<string[]>([]);
   const [resultRoute, setResultRoute] = useState<IRoute | null>(null);
@@ -20,6 +22,8 @@ const Home: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [generate, setGenerate] = useState<ILocationDetail[]>([])
 
+  const [disableGenerate, setDisableGenerate] = useState<boolean>(true)
+
   const handleSearch = (type: "travel" | "transport", params: any) => {
     setLoading(true);
     setMode(type);
@@ -27,7 +31,7 @@ const Home: React.FC = () => {
       setParamSearch(params.travel);
       fetchLocation(params.travel);
     }
-    if (type === "transport") {
+    if (type === "transport" && params.source && params.destination) {
       console.log("search", type);
       fetchRoute([params.source, params.destination]);
       setParamSearch([params.source, params.destination]);
@@ -148,12 +152,17 @@ const Home: React.FC = () => {
     );
   };
 
+
   const RenderTravelSearch = () => {
     const store = useContext(PlaceToVisitContext)
     const handleClick = () => {
       setGenerate(store?.placeToVisitSelect.placeToVisitSelect)
-      console.log(generate)
+      history.push(
+        '/plan/generated',
+        { detail: store?.placeToVisitSelect.placeToVisitSelect },
+      )
     }
+
     return (
       <div className="route-container">
         <Row>
@@ -170,9 +179,13 @@ const Home: React.FC = () => {
             {store?.placeToVisitSelect.placeToVisitSelect.map((each: ILocationDetail) => {
               return <CardImage locationDetail={each} key={each.name} />
             })}
-            <Button type="primary" size="large" onClick={() => {
-              handleClick()
-            }}>
+            <Button
+              type="primary"
+              size="large"
+              disabled={store?.placeToVisitSelect.placeToVisitSelect.length === 0}
+              onClick={() => {
+                handleClick()
+              }}>
               Generate
             </Button>
           </Col>
@@ -198,7 +211,7 @@ const Home: React.FC = () => {
     if (mode === "travel" && paramSearch) {
       return <RenderTravelSearch />;
     }
-    if (mode === "transport" && paramSearch.length === 2) {
+    if (mode === "transport" && paramSearch.length === 2 && paramSearch[0] && paramSearch[1]) {
       return (
         <TravelTimeline routeResult={resultRoute} paramSearch={paramSearch} />
       );
