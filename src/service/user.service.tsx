@@ -23,7 +23,7 @@ export const getUserData = async (id: any) => {
 
 export const postRegister = async (values: any) => {
   try {
-    return await axios.post(API_URL + "/user/create-user", values);
+    return await axios.post(API_URL + "/api/user/create-user", values);
   } catch (error) {
     console.log("error register");
     throw error;
