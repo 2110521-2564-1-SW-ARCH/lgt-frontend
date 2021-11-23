@@ -1,21 +1,25 @@
-import { Input, Button, message, Select, AutoComplete } from "antd";
-import { IoIosPin, IoIosBus } from "react-icons/io";
+import "./style.scss";
+import { Button, message, Select } from "antd";
+import { IoIosBus } from "react-icons/io";
 import { FaMountain } from "react-icons/fa";
 import { useState, Fragment, useEffect } from "react";
-import "./style.scss";
 import { getAllOptionRouteApi } from "../../service/route";
+import { getLocationAllApi } from "../../service/location";
 
 const SearchComponent: React.FC<{ searchFunction: Function }> = ({
   searchFunction,
 }) => {
-  const [travel, setTravel] = useState("");
+  const [travel, setTravel] = useState<string | undefined>(undefined);
   const [source, setSource] = useState<string | undefined>(undefined);
   const [destination, setDestination] = useState<string | undefined>(undefined);
   const [currentSearch, setCurrentSearch] = useState("travel");
-  
+
   // option select
-  const [sourceOption, setSourceOption] = useState<{value: string}[]>([])
-  const [destinationOption, setDestinationOption] = useState<{value: string}[]>([])
+  const [sourceOption, setSourceOption] = useState<{ value: string }[]>([]);
+  const [destinationOption, setDestinationOption] = useState<
+    { value: string }[]
+  >([]);
+  const [travelOption, setTravelOption] = useState<{ value: string }[]>([]);
 
   const isActive = (type: string) => {
     return currentSearch === type ? `active` : ``;
@@ -29,10 +33,9 @@ const SearchComponent: React.FC<{ searchFunction: Function }> = ({
 
   const checkEmpty = () => {
     if (currentSearch === "transport") {
-      if (source?.length === 0 || destination?.length === 0) return false;
-      return true;
-    } else if (travel.length === 0) return false;
-    return true;
+      if (!!source || !!destination) return true;
+    } else if (!!travel) return true;
+    return false;
   };
 
   const handleSearch = () => {
@@ -58,32 +61,49 @@ const SearchComponent: React.FC<{ searchFunction: Function }> = ({
   };
 
   const fetchTransportOption = async () => {
-    await getAllOptionRouteApi()
-      .then((response) => {
-        setSourceOption(response[0].map((item: string) => {
-          return { value: item }
-        }))
-        setDestinationOption(response[1]?.map((item: string) => {
-          return { value: item }
-        }))
-      })
-  }
+    await getAllOptionRouteApi().then((response) => {
+      setSourceOption(
+        response[0].map((item: string) => {
+          return { value: item };
+        })
+      );
+      setDestinationOption(
+        response[1]?.map((item: string) => {
+          return { value: item };
+        })
+      );
+    });
+
+    await getLocationAllApi().then((response) => {
+      setTravelOption(
+        response.map((item: { [key: string]: string }) => {
+          return { value: item.name };
+        })
+      );
+    })
+  };
 
   useEffect(() => {
-    fetchTransportOption()
-  }, [])
+    fetchTransportOption();
+  }, []);
 
   const renderForm = () => {
     if (currentSearch === "travel") {
       return (
         <div className="form-input">
-          <Input
+          <Select
             allowClear
+            showSearch
             size="large"
             placeholder="Going to"
-            prefix={<IoIosPin />}
+            options={travelOption}
+            filterOption={(input, option) => {
+              return (
+                option?.value.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              );
+            }}
             value={travel}
-            onChange={(e) => handleOnChange("travel", e.target.value)}
+            onChange={(value: string) => handleOnChange("travel", value)}
           />
         </div>
       );
@@ -98,7 +118,9 @@ const SearchComponent: React.FC<{ searchFunction: Function }> = ({
             placeholder="Search Source Location"
             options={sourceOption}
             filterOption={(input, option) => {
-              return option?.value.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              return (
+                option?.value.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              );
             }}
             value={source}
             onChange={(value: string) => handleOnChange("source", value)}
@@ -114,7 +136,9 @@ const SearchComponent: React.FC<{ searchFunction: Function }> = ({
             options={destinationOption}
             optionFilterProp="children"
             filterOption={(input, option) => {
-              return option?.value.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              return (
+                option?.value.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              );
             }}
             onChange={(value: string) => handleOnChange("destination", value)}
           />
