@@ -21,7 +21,8 @@
             }
         }
         .desktop-logo {
-            width: calc(100vw - 450px);
+            width: auto;
+            margin-right: calc(100vw - 780px);
             text-align: left;
             height: 48px;
             a {
@@ -39,7 +40,7 @@
             a:hover {
                 border: none;
             }
-            &:hover {
+            &:not(:first-child):hover {
                 border-bottom: 2px solid white;
             }
         }

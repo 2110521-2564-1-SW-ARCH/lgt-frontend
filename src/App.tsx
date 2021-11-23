@@ -1,12 +1,16 @@
 import React from 'react';
 import './styles/app.scss';
 import { Switch, Route } from "react-router-dom";
+import { 
+  Home, 
+  Login, 
+  AddRoute, 
+  ResetPassword, 
+  Register,
+  MyRoutes,
+  GeneratePlan, 
+} from './pages';
 
-import { Home } from './pages';
-import { Login } from './pages';
-import { ResetPassword } from './pages'
-import { Register } from './pages'
-import { MyRoutes } from './pages'
 import PrivateRoute from "./components/privateroute";
 
 const App: React.FC = () => {
@@ -23,6 +27,8 @@ const App: React.FC = () => {
         <Route exact key="register" path="/register" component={Register} />
         <PrivateRoute exact key="my-routes" path="/my-routes" component={MyRoutes} />
         <PrivateRoute exact key="home" path="/home" component={Home} />
+        <PrivateRoute exact key="addRoute" path="/transport/add" component={AddRoute} />
+        <PrivateRoute exact key="generated-plan" path="/plan/generated" component={GeneratePlan} />
       </Switch>
     </div>
   );
