@@ -9,9 +9,11 @@ import {IRoute} from "../../helpers/interface/route";
 import {ILocationDetail} from "../../helpers/interface/location";
 import {IPlanDetail} from "../../helpers/interface/travelcatalog";
 import PlaceToVisitProvider, {PlaceToVisitContext} from "../../utils/placeToVisitStore";
+import { useHistory } from "react-router-dom";
 
 
 const Home: React.FC = () => {
+    const history = useHistory()
     const [mode, setMode] = useState<string>("recommend");
     const [paramSearch, setParamSearch] = useState<string[]>([]);
     const [resultRoute, setResultRoute] = useState<IRoute | null>(null);
@@ -19,6 +21,8 @@ const Home: React.FC = () => {
     const [recommendPlan, setRecommendPlan] = useState<IPlanDetail[] | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [generate, setGenerate] = useState<ILocationDetail[]>([])
+
+    const [disableGenerate, setDisableGenerate] = useState<boolean>(true)
 
   const handleSearch = (type: "travel" | "transport", params: any) => {
     setLoading(true);
@@ -146,12 +150,17 @@ const Home: React.FC = () => {
         );
     };
 
+
     const RenderTravelSearch = () => {
         const store = useContext(PlaceToVisitContext)
         const handleClick = () => {
             setGenerate(store?.placeToVisitSelect.placeToVisitSelect)
-            console.log(generate)
+            history.push(
+                '/plan/generated',
+                { detail: store?.placeToVisitSelect.placeToVisitSelect },
+            )
         }
+
         return (
             <div className="route-container">
                 <Row>
@@ -168,9 +177,13 @@ const Home: React.FC = () => {
                         {store?.placeToVisitSelect.placeToVisitSelect.map((each: ILocationDetail) => {
                             return <CardImage locationDetail={each} key={each.name}/>
                         })}
-                        <Button type="primary" size="large" onClick={() => {
-                            handleClick()
-                        }}>
+                        <Button 
+                            type="primary" 
+                            size="large"
+                            disabled={store?.placeToVisitSelect.placeToVisitSelect.length === 0} 
+                            onClick={() => {
+                                handleClick()
+                            }}>
                             Generate
                         </Button>
                     </Col>

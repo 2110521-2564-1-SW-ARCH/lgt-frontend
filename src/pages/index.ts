@@ -4,6 +4,7 @@ import ResetPassword from "./login/resetpassword";
 import Register from "./register/register";
 import MyRoutes from "./myroutes/myroutes";
 import AddRoute from "./Route/addRoute";
+import GeneratePlan from "./plan/generatePlan";
 
 export {
     Home,
@@ -11,6 +12,7 @@ export {
     ResetPassword,
     Register,
     AddRoute,
-    MyRoutes
+    MyRoutes,
+    GeneratePlan,
 }
 

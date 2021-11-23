@@ -7,7 +7,8 @@ import {
   AddRoute, 
   ResetPassword, 
   Register,
-  MyRoutes, 
+  MyRoutes,
+  GeneratePlan, 
 } from './pages';
 
 import PrivateRoute from "./components/privateroute";
@@ -27,6 +28,7 @@ const App: React.FC = () => {
         <PrivateRoute exact key="my-routes" path="/my-routes" component={MyRoutes} />
         <PrivateRoute exact key="home" path="/home" component={Home} />
         <PrivateRoute exact key="addRoute" path="/transport/add" component={AddRoute} />
+        <PrivateRoute exact key="generated-plan" path="/plan/generated" component={GeneratePlan} />
       </Switch>
     </div>
   );
