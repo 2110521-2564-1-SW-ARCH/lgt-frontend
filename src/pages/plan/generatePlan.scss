@@ -1,19 +1,47 @@
 
-.travel-timeline-container {
-    width: 90%;
-    margin: 0px auto;
-    border-radius: 8px;
-    background: white;
-    // background: #f6f6f6;
-    padding: 40px 30px;
-    display: flex;
-    min-height: 300px;
-    &.center {
+.generate-plan-container {
+    padding-top: 100px;
+    height: calc(100% - 100px);
+    .generate-section {
+        width: 80%;
+        margin: 0px auto;
+        border-radius: 8px;
+        background: white;
+        padding: 20px;
+        min-height: 300px;
+    }
+    .loading-container {
+        width: 80%;
+        margin: 0px auto;
+        border-radius: 8px;
+        background: white;
+        padding: 20px;
+        min-height: 300px;
+        display: flex;
         justify-content: center;
         align-items: center;
+        height: 100%;
+      }
+    .center {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    h2 {
+        color: #063f75;
     }
     .blue-section {
         background-color: #e1f0ff;
+        padding: 10px 20px;
+        h2 {
+            margin: 0;
+            color: #0062bd;
+        }
+    }
+    .green-section {
+        background-color: #93cbff;
         padding: 10px 20px;
         h2 {
             margin: 0;
@@ -30,6 +58,7 @@
                 margin: 0 6px;
                 font-size: 17px;
                 color: #0062bd;
+                text-transform: capitalize;
             }
             .time-section {
                 color: gray;
@@ -86,4 +115,8 @@
             display: block;
         }
     }
+}
+
+.modal-plan-container {
+
 }

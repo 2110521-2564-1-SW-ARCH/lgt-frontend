@@ -26,15 +26,19 @@ export const getRouteApi = async (body: IGetRouteApi) => {
 };
 
 export const addRouteApi = async (body: IAddRouteApi) => {
-  return await axiosTokenStore
-    .post("/api/routes/save-route", body)
-    .then((response) => {
-      return response.data;
-    })
-    .catch((error) => {
-      throw Error(`[addRouteApi API] error: ${error}`);
-    });
-};
+    return await axiosTokenStore
+        .post(
+            '/api/routes/save-route',
+            body
+        )
+        .then((response) => {
+            if (response.data.code === 400) throw Error("error")
+            return response.data
+        })
+        .catch((error) => {
+            throw Error(`[addRouteApi API] error: ${error}`)
+        })
+}
 
 export const deleteRouteApi = async (id: number) => {
   return await axiosTokenStore

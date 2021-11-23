@@ -1,4 +1,5 @@
 import { axiosTokenStore } from "./axiosStore"
+import { ISavePlan } from "../helpers/interface/travelcatalog"
 
 export const getAllPlanApi = async () => {
     return await axiosTokenStore
@@ -11,9 +12,9 @@ export const getAllPlanApi = async () => {
         })
 }
 
-export const getUserPlanApi = async (id: number) => {
+export const getUserPlanApi = async (username: string) => {
     return await axiosTokenStore
-        .get(`/api/travel-catalog/get-user-plan/${id}`)
+        .get(`/api/travel-catalog/get-user-plan/${username}`)
         .then((response) => {
             return response.data
         })
@@ -22,7 +23,7 @@ export const getUserPlanApi = async (id: number) => {
         })
 }
 
-export const savePlanApi = async (body: any) => {
+export const savePlanApi = async (body: ISavePlan) => {
     return await axiosTokenStore
         .post('/api/travel-catalog/save-plan', body)
         .then((response) => {

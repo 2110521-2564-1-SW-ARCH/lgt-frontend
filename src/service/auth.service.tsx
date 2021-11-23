@@ -27,7 +27,7 @@ export const loginApi = async (
         localStorage.setItem("access_token", response.data.access_token)
         localStorage.setItem("firstName", response.data.user.firstName)
         localStorage.setItem("lastName", response.data.user.lastName)
-        localStorage.setItem("userId", JSON.stringify(Number(response.data.user.userId)))
+        localStorage.setItem("username", response.data.user.username)
       }
       return response.data
     })
