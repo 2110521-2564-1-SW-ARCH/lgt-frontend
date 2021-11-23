@@ -1,0 +1,91 @@
+@import '../../styles/index.scss';
+
+.register-container {
+    .bg-login {
+        position: relative;
+        display: block;
+        height: 375px;
+        width: 100vw;
+        &::after {
+            position: absolute;
+            background-image: url("../../images/background.jpg");
+            background-attachment: fixed;
+            background-position: center center;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.8;
+            z-index: -1;
+            content: "";
+        }
+    }
+
+    .space-white {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 1;
+        background-color: white;
+        // height: 100vh;
+        // width: 50vw;
+        width: 100vw;
+    }
+    .ant-btn {
+        width: 280px;
+        background-color: #1890FF;
+        color: white;
+        border-radius: 10px;
+        height: 45px;
+        border: none;
+        &:hover {
+            background-color: #caeaf7;
+            color: #1890FF;
+        }
+    }
+    .ant-form-item {
+        color: #1890FF;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        // max-width: 320px;
+        width: 280px;
+    }
+    .ant-form {
+        color: #1890FF;
+    }
+    .ant-form-item-label > label {
+        color: #1890FF;
+    }
+    .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+        width: 250px;
+        border: none;
+        border-bottom: solid 1px #AAAAAA;
+
+    }
+    .space-none {
+        height: 375px;
+    }
+    .ant-picker {
+        width: 250px;
+    }
+
+    @media screen and(min-width: 1025px) {
+        .bg-login {
+            height: 100%;
+        }
+        .space-white {
+            width: 50%;
+            height: 100%;
+        }
+        .space-none {
+            height: 0;
+        }
+        .input,
+        .ant-form-item,
+        .ant-btn {
+            width: 320px;
+        }
+    };
+}
