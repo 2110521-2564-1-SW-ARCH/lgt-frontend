@@ -52,6 +52,9 @@
                   position: absolute;
                   top: calc(-32px - 12.5px);
                   height: 25px;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
                   span {
                       margin: 4px;
                       font-size: 16px;
@@ -71,10 +74,16 @@
               left: 36px;
               height: 100%;
             }
-          }
-          .ant-timeline-item-last > .ant-timeline-item-tail {
+            &:last-child {
+                .ant-timeline-item-tail {
+                    height: 50%;
+                    display: block;
+                  }
+            }
+        }
+        .ant-timeline-item-last > .ant-timeline-item-tail {
             height: 50%;
             display: block;
-          }
+        }
     }
 }

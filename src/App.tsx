@@ -2,10 +2,13 @@ import React from 'react';
 import './styles/app.scss';
 import { Switch, Route } from "react-router-dom";
 
-import { Home } from './pages';
-import { Login } from './pages';
-import { ResetPassword } from './pages'
-import { Register } from './pages'
+import { 
+  Home, 
+  Login, 
+  AddRoute, 
+  ResetPassword, 
+  Register 
+} from './pages';
 import PrivateRoute from "./components/privateroute";
 
 const App: React.FC = () => {
@@ -21,6 +24,7 @@ const App: React.FC = () => {
         />
         <Route exact key="register" path="/register" component={Register} />
         <PrivateRoute exact key="home" path="/home" component={Home} />
+        <PrivateRoute exact key="addRoute" path="/transport/add" component={AddRoute} />
       </Switch>
     </div>
   );

@@ -17,7 +17,7 @@ const Home: React.FC = () => {
     setLoading(true)
     setMode(type)
     if (type === "travel") setParamSearch(params.travel)
-    if (type === "transport") {
+    if (type === "transport" && params.source && params.destination) {
       console.log('search', type)
       fetchRoute([params.source, params.destination])
       setParamSearch([params.source, params.destination])
@@ -59,6 +59,7 @@ const Home: React.FC = () => {
     )
   }
 
+  console.log(paramSearch)
 
   const renderResult = () => {
     if (loading) {
@@ -67,24 +68,19 @@ const Home: React.FC = () => {
       return renderTravel()
     } else if (mode === 'travel' && paramSearch.length === 1) {
       return renderTravelSearch()
-    } else if (mode === 'transport' && paramSearch.length === 2) {
-      
+    } else if (mode === 'transport' && paramSearch.length === 2 && paramSearch[0] && paramSearch[1]) {
       return <TravelTimeline routeResult={resultRoute} paramSearch={paramSearch}/>
     }
   }
 
   return (
-    <div>
-      <div className="home-container">
-        <div className="bg-container">
-          <SearchComponent
-          searchFunction={(type: "travel" | "transport", params: any) =>
-              handleSearch(type, params)
-          }
-          />
-          {renderResult()}
-        </div>
-      </div>
+    <div className="home-container">
+        <SearchComponent
+        searchFunction={(type: "travel" | "transport", params: any) =>
+            handleSearch(type, params)
+        }
+        />
+        {renderResult()}
     </div>
   );
 };

@@ -35,6 +35,7 @@ export const addRouteApi = async (body: IAddRouteApi) => {
             body
         )
         .then((response) => {
+            if (response.data.code === 400) throw Error("error")
             return response.data
         })
         .catch((error) => {
