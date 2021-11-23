@@ -10,91 +10,9 @@ const MyRoutes: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(false);
 
     const fetchMyRoute = useCallback(async () => {
-        let tempUserId: any = localStorage.getItem("userId");
-        let userId: Number = JSON.parse(tempUserId);
-        // const res = await getUserPlanApi(userId);
-        // console.log(res);
-        // setMyRoute(res)
-        const mock: IPlanDetail[] = [
-            {
-                _id: "012345",
-                userName: "pim",
-                name: "plan1",
-                description: "desc-plan1",
-                locations: [
-                    {
-                        id: 1,
-                        name: "Lido",
-                        description: "test",
-                        type: "test",
-                        address: "test",
-                        district: "test",
-                        subDistrict: "test",
-                        postCode: "test",
-                        province: "test",
-                        latitude: "1",
-                        longitude: "1",
-                        imgURL: "test",
-                        closestStation: 1,
-                    },
-                    {
-                        id: 2,
-                        name: "Faculty of Political Science",
-                        description: "test",
-                        type: "test",
-                        address: "test",
-                        district: "test",
-                        subDistrict: "test",
-                        postCode: "test",
-                        province: "test",
-                        latitude: "1",
-                        longitude: "1",
-                        imgURL: "test",
-                        closestStation: 1,
-                    },
-                ],
-            },
-            {
-                _id: "rekogwokbork",
-                userName: "pim3",
-                name: "plan1",
-                description: "desc-plan1",
-                locations: [
-                    {
-                        id: 1,
-                        name: "Lido",
-                        description: "test",
-                        type: "test",
-                        address: "test",
-                        district: "test",
-                        subDistrict: "test",
-                        postCode: "test",
-                        province: "test",
-                        latitude: "1",
-                        longitude: "1",
-                        imgURL: "test",
-                        closestStation: 1,
-                    },
-                    {
-                        id: 2,
-                        name: "Faculty of Political Science",
-                        description: "test",
-                        type: "test",
-                        address: "test",
-                        district: "test",
-                        subDistrict: "test",
-                        postCode: "test",
-                        province: "test",
-                        latitude: "1",
-                        longitude: "1",
-                        imgURL: "test",
-                        closestStation: 1,
-                    },
-                ],
-            },
-        ];
-        console.log(userId)
-        setMyRoute(mock);
+        let username: any = localStorage.getItem("username");
+        const res = await getUserPlanApi(username);
+        setMyRoute(res)
         setLoading(false);
     }, []);
 
@@ -126,7 +44,7 @@ const MyRoutes: React.FC = () => {
     }, [fetchMyRoute]);
 
     return (
-        <div>
+        <div className="my-routes-container">
             <div className="home-container">
                 <div>
                     {renderResult()}

@@ -9,22 +9,20 @@ import {
 } from "react-router-dom";
 
 const Plan: React.FC = () => {
-    const [myRoute, setMyRoute] = useState<IPlanDetail[] | null>(null);
-    const [loading, setLoading] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
     let location = useLocation();
-    const locationList = location.state.locationList;
+    let { locationList, planName } = location.state;
 
     const renderMyroute = () => {
         return (
             <div className="route-container">
-                <h1>All Locations</h1>
+                <h1>{`All Locations in ${planName}`}</h1>
                 <PlanDetail locationList={locationList} />
             </div>
         );
     };
 
     const renderResult = () => {
-        console.log(location.state.locationList)
         if (loading) {
             return (
                 <div className="loading-container">
@@ -35,13 +33,12 @@ const Plan: React.FC = () => {
         return renderMyroute();
     };
 
-    // useEffect(() => {
-    //     setLoading(true);
-    //     fetchMyRoute();
-    // }, [fetchMyRoute]);
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 1000);
+    }, []);
 
     return (
-        <div>
+        <div className="plan-container">
             <div className="home-container">
                 <div>
                     {renderResult()}

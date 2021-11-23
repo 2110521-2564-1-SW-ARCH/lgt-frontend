@@ -10,6 +10,7 @@ import { ILocationDetail } from "../../helpers/interface/location";
 import { IPlanDetail } from "../../helpers/interface/travelcatalog";
 import PlaceToVisitProvider, { PlaceToVisitContext } from "../../utils/placeToVisitStore";
 import { useHistory } from "react-router-dom";
+import { getAllPlanApi } from "../../service/travelCatalog";
 
 
 const Home: React.FC = () => {
@@ -39,88 +40,8 @@ const Home: React.FC = () => {
   };
 
   const fetchRecommendRoute = useCallback(async () => {
-    // const res = await getAllPlanApi();
-    // console.log(res);
-    // setRecommendPlan(res)
-    const mock: IPlanDetail[] = [
-      {
-        _id: "012345",
-        userName: "pim",
-        name: "plan1",
-        description: "desc-plan1",
-        locations: [
-          {
-            id: 1,
-            name: "Lido",
-            description: "test",
-            type: "test",
-            address: "test",
-            district: "test",
-            subDistrict: "test",
-            postCode: "test",
-            province: "test",
-            latitude: "1",
-            longitude: "1",
-            imgURL: "test",
-            closestStation: 1,
-          },
-          {
-            id: 2,
-            name: "Faculty of Political Science",
-            description: "test",
-            type: "test",
-            address: "test",
-            district: "test",
-            subDistrict: "test",
-            postCode: "test",
-            province: "test",
-            latitude: "1",
-            longitude: "1",
-            imgURL: "test",
-            closestStation: 1,
-          },
-        ],
-      },
-      {
-        _id: "rekogwokbork",
-        userName: "pim3",
-        name: "plan1",
-        description: "desc-plan1",
-        locations: [
-          {
-            id: 1,
-            name: "Lido",
-            description: "test",
-            type: "test",
-            address: "test",
-            district: "test",
-            subDistrict: "test",
-            postCode: "test",
-            province: "test",
-            latitude: "1",
-            longitude: "1",
-            imgURL: "test",
-            closestStation: 1,
-          },
-          {
-            id: 2,
-            name: "Faculty of Political Science",
-            description: "test",
-            type: "test",
-            address: "test",
-            district: "test",
-            subDistrict: "test",
-            postCode: "test",
-            province: "test",
-            latitude: "1",
-            longitude: "1",
-            imgURL: "test",
-            closestStation: 1,
-          },
-        ],
-      },
-    ];
-    setRecommendPlan(mock);
+    const res = await getAllPlanApi();
+    setRecommendPlan(res)
     setLoading(false);
   }, []);
 

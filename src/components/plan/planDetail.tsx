@@ -7,15 +7,10 @@ import './planDetail.scss'
 const PlanDetail: React.FC<{ locationList: ILocationDetail[] }> = ({ locationList }) => {
 
     const renderLocation = () => {
-        console.log(locationList)
         const list = locationList?.map((item, index) => {
-            let { name, description, type, address, district, subDistrict, postCode, province,
-                latitude,
-                longitude,
-                imgURL,
-                closestStation } = item;
+            let { name, description, type, address, district, subDistrict, postCode, province, imgURL, closestStation } = item;
             return (
-                <Timeline.Item>
+                <Timeline.Item key={`detail-${index}`}>
                     <div className="blue-section">
                         <div className="head">{name}</div>
                         <Divider />
@@ -29,10 +24,6 @@ const PlanDetail: React.FC<{ locationList: ILocationDetail[] }> = ({ locationLis
                                 />
                             </div>
                             <div className="detail-container">
-                                {/* <div className="address-container">
-                                    <div className="icon"><DownCircleOutlined /></div>
-                                    <div className="address">{`${address} ${district} ${subDistrict} ${province} ${postCode}`}</div>
-                                </div> */}
                                 <div className="description">{description}</div>
                                 <div className="additional-container">
                                     <div className="title">ที่อยู่</div>

@@ -6,12 +6,12 @@ import "./card.scss";
 import { useHistory } from "react-router-dom";
 
 const CardBox: React.FC<{ planDetail: IPlanDetail }> = ({ planDetail }) => {
-  const { _id, name, description, locations, userName } = planDetail;
-  const { imgURL, district } = locations[0];
+  const { _id, planName, description, locations, userName } = planDetail;
+  let { address, district, subDistrict, postCode, province, imgURL } = locations[0];
   const history = useHistory();
 
   const handleOnClick = () => {
-    let params = { pathname: `/routes/${_id}`, state: { locationList: locations } }
+    let params = { pathname: `/routes/${_id}`, state: { locationList: locations, planName: planName } }
     history.push(params)
   }
 
@@ -27,12 +27,12 @@ const CardBox: React.FC<{ planDetail: IPlanDetail }> = ({ planDetail }) => {
           />
         </Col>
         <Col span={16} className="description">
-          <h2>{name}</h2>
+          <h2>{planName}</h2>
           <div className="user">
             <UserOutlined />
             <h3>{userName}</h3>
           </div>
-          <h4>{`เขต ${district}`}</h4>
+          <h4>{`${address} ${district} ${subDistrict} ${province} ${postCode}`}</h4>
           <div className="text">{description}</div>
         </Col>
       </Row>
