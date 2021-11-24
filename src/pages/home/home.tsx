@@ -89,7 +89,7 @@ const Home: React.FC = () => {
         <Row>
           <Col flex={3}>
             <h1>{`Place to visit in ${paramSearch}`}</h1>
-            <Row gutter={[4, 16]}>
+            <Row gutter={[10, 16]}>
               {resultLocation?.map((each) => {
                 return <CardVerticalBox locationDetail={each} key={each.name} />
               })}
