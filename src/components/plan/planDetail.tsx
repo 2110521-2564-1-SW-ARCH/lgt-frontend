@@ -27,7 +27,7 @@ const PlanDetail: React.FC<{ locationList: ILocationDetail[] }> = ({ locationLis
                                 <div className="description">{description}</div>
                                 <div className="additional-container">
                                     <div className="title">ที่อยู่</div>
-                                    <div className="value">{`${address} ${district} ${subDistrict} ${province} ${postCode}`}</div>
+                                    <div className="value">{`${address} ${subDistrict} ${district} ${province} ${postCode}`}</div>
                                 </div>
                                 <div className="additional-container">
                                     <div className="title">ประเภทของสถานที่</div>

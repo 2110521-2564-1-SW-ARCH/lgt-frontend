@@ -32,7 +32,7 @@ const CardBox: React.FC<{ planDetail: IPlanDetail }> = ({ planDetail }) => {
             <UserOutlined />
             <h3>{userName}</h3>
           </div>
-          <h4>{`${address} ${district} ${subDistrict} ${province} ${postCode}`}</h4>
+          <h4>{`${address} ${subDistrict} ${district} ${province} ${postCode}`}</h4>
           <div className="text">{description}</div>
         </Col>
       </Row>
